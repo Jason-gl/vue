@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="lyx">
+        <!--v-cloak解决插件表达式闪烁问题-->
+        <!--插件表达式可以在前后添加内容且不被覆盖-->
+        <p v-cloak>{{msg}}</p>
+        <!--默认v-text没有闪烁问题，但会覆盖元素中原本的内容-->
+        <h1 v-text='msg'>123</h1>
+        <!--这中的123会覆盖不被显示-->
+        <p v-html='msg2'>123</p>
+    </div>
+    <script>
+        var n = new Vue({
+            el: '#lyx',
+            data: {
+                msg: '123456',
+                msg2: '<h1>73672836977</h1>'
+
+            }
+        })
+    </script>
+
+</body>
+
+</html>
