@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <style>
+        .st {
+            margin: 0px;
+            height: 28px;
+            background-color: blue;
+            color: aliceblue;
+        }
+        
+        th {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tkp">
+        <div class="st">
+            <h3>添加品牌</h3>
+        </div>
+        <div form-inline>
+            <label>
+                        id:
+                        <input type="text" v-model='id'> 
+                        </label>
+            <label>
+                        name:
+                        <input type="text" v-model='name'>
+                        </label>
+            <input type="button" value="添加" style="background-color: blue;color: #fff;" @click='add'>
+        </div>
+
+        <table border="1">
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>时间</th>
+                <th>删除</th>
+            </tr>
+            <tr v-for='item in list' :key='item.id'>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.时间}}</td>
+                <td>
+                    <a href="" @click.prevent='del(item.id)'>删除</a>
+                </td>
+
+            </tr>
+        </table>
+
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#tkp',
+            data: {
+                id: '',
+                name: '',
+                list: [{
+                    id: 1,
+                    name: '宝马',
+                    时间: new Date()
+                }, {
+                    id: 2,
+                    name: '奔驰',
+                    时间: new Date()
+                }, ]
+            },
+            methods: {
+                add() {
+                    var car = {
+                        id: this.id,
+                        name: this.name,
+                        时间: new Date()
+                    }
+                    this.list.push(car)
+                },
+                del(id) {
+                    this.list.some((item, i) => {
+                        if (item.id == id) {
+                            this.list.splice(i, 1)
+                            return true;
+                        }
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

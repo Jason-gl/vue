@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="tkp">
+        <!--v-if的特点：每次都会重新删除或创建元素
+            v-show的特点：每次不会重新进行DOM的删除和创建操作，只是切换了元素的display：none
+            样式-->
+        <!--v-if有较高的切换性能消耗
+                v-show有较高的切换渲染消耗-->
+        <!--如果元素涉及到频繁的切换，最好不要使用v-if,推荐使用v-show
+                    如果元素可能永远不会被显示出来让用户看到，则推荐使用v-if-->
+        <input type="button" value="按钮" @click='add'>
+        <h2 v-if='flag'>这是用v-if控制的元素</h2>
+        <h2 v-show='flag'>这是用v-show控制的元素</h2>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#tkp',
+            data: {
+                flag: true
+            },
+            methods: {
+                add() {
+                    this.flag = !this.flag
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
